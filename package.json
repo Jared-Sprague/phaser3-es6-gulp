@@ -1,0 +1,31 @@
+{
+  "name": "phaser3-es6-gulp",
+  "version": "1.0.0",
+  "author": "Ignacio X. Domínguez",
+  "license": "MIT",
+  "description": "Phaser 3 ES6+ Starter Template with Gulp",
+  "main": "src/js/Game.js",
+  "scripts": {
+    "build": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ignacioxd/phaser3-es6-gulp"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
+    "babel-core": "^6.26.0",
+    "babelify": "git+https://github.com/noygal/babelify.git#feature/babel-7-support",
+    "browserify": "^16.1.0",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^3.0.0",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  },
+  "dependencies": {
+    "phaser": "^3.1.2"
+  }
+}
