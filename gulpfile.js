@@ -5,7 +5,7 @@ let babelify = require('babelify');
 let source = require('vinyl-source-stream');
 let buffer = require('vinyl-buffer');
 let sourcemaps = require('gulp-sourcemaps');
-let uglify = require('gulp-uglify');
+let terser = require('gulp-terser');
 let path = require('path');
 
 const paths = {
@@ -43,8 +43,8 @@ gulp.task('scripts', () => {
     .pipe(source(paths.game.dest))
     .pipe(buffer())
     .pipe(sourcemaps.init({loadMaps: true}))
-    .pipe(uglify())
-    .pipe(sourcemaps.write('./srcmaps'))
+    .pipe(terser())
+    .pipe(sourcemaps.write('./source-maps'))
     .pipe(gulp.dest(paths.script.dest));
 });
 
