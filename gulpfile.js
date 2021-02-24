@@ -5,7 +5,7 @@ let babelify = require('babelify');
 let source = require('vinyl-source-stream');
 let buffer = require('vinyl-buffer');
 let sourcemaps = require('gulp-sourcemaps');
-var uglify = require('gulp-uglify');
+let uglify = require('gulp-uglify');
 let path = require('path');
 
 const paths = {
@@ -30,21 +30,15 @@ const paths = {
   }
 };
 
-gulp.task('default', ['build']);
 
-gulp.task('build', ['copy-static', 'scripts']);
-
-gulp.task('scripts', function() {
+gulp.task('scripts', () => {
   return browserify(
     {
       paths: [path.join(__dirname, paths.script.src)],
       entries: paths.game.entry,
       debug: true
     })
-    .transform(babelify, {
-      babel: require('@babel/core'),
-      sourceMaps: true
-    })
+    .transform(babelify)
     .bundle()
     .pipe(source(paths.game.dest))
     .pipe(buffer())
@@ -54,28 +48,35 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest(paths.script.dest));
 });
 
-gulp.task('clean', function() {
+async function clean() {
   del([paths.build]);
-});
+}
 
-gulp.task('copy-static', ['copy-html', 'copy-assets', 'copy-phaser', 'copy-styles']);
-
-gulp.task('copy-html', function() {
+async function copyHTML() {
   gulp.src([paths.base + '/index.html', ])
-    .pipe(gulp.dest(paths.build));
-});
+      .pipe(gulp.dest(paths.build));
+}
 
-gulp.task('copy-assets', function() {
+async function copyAssets() {
   gulp.src(paths.assets.src + '/**/*')
-    .pipe(gulp.dest(paths.assets.dest));
-});
+      .pipe(gulp.dest(paths.assets.dest));
+}
 
-gulp.task('copy-phaser', function() {
+async function copyPhaser() {
   gulp.src(paths.phaser + '/phaser.min.js')
-    .pipe(gulp.dest(paths.script.dest));
-});
+      .pipe(gulp.dest(paths.script.dest));
+}
 
-gulp.task('copy-styles', function() {
+async function copyStyles() {
   gulp.src(paths.styles.src + '/**/*.css')
-    .pipe(gulp.dest(paths.styles.dest));
-});
+      .pipe(gulp.dest(paths.styles.dest));
+}
+
+gulp.task('clean', clean);
+gulp.task('copy-html', copyHTML);
+gulp.task('copy-assets', copyAssets);
+gulp.task('copy-phaser', copyPhaser);
+gulp.task('copy-styles', copyStyles);
+gulp.task('copy-static', gulp.series('copy-html', 'copy-assets', 'copy-phaser', 'copy-styles'));
+gulp.task('build', gulp.series('copy-static', 'scripts'));
+gulp.task('default', gulp.series('build'));
