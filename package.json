@@ -1,30 +1,36 @@
 {
-  "name": "phaser3-es6-gulp",
-  "version": "1.0.0",
-  "author": "Ignacio X. Domínguez",
-  "license": "MIT",
-  "description": "Phaser 3 ES6+ Starter Template with Gulp",
-  "main": "src/js/Game.js",
-  "scripts": {
-    "build": "gulp"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ignacioxd/phaser3-es6-gulp"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.13.1",
-    "@babel/preset-env": "^7.13.5",
-    "babelify": "^10.0.0",
-    "browserify": "^17.0.0",
-    "del": "^6.0.0",
-    "gulp": "^4.0.2",
-    "gulp-sourcemaps": "^3.0.0",
-    "gulp-terser": "^2.0.1",
-    "vinyl-buffer": "^1.0.1",
-    "vinyl-source-stream": "^2.0.0"
-  },
-  "dependencies": {
-    "phaser": "^3.52.0"
-  }
+    "name": "phaser3-es6-gulp",
+    "version": "1.0.0",
+    "author": "Ignacio X. Domínguez",
+    "license": "MIT",
+    "description": "Phaser 3 ES6+ Starter Template with Gulp",
+    "main": "src/js/Game.js",
+    "scripts": {
+        "build-dev": "gulp build-watch-serve",
+        "start": "npm run build-dev",
+        "eslint": "eslint ./src --ext .js",
+        "eslint-fix": "eslint --fix ./src --ext .js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ignacioxd/phaser3-es6-gulp"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.13.1",
+        "@babel/preset-env": "^7.13.5",
+        "babelify": "^10.0.0",
+        "browserify": "^17.0.0",
+        "del": "^6.0.0",
+        "gulp": "^4.0.2",
+        "gulp-sourcemaps": "^3.0.0",
+        "gulp-terser": "^2.0.1",
+        "vinyl-buffer": "^1.0.1",
+        "vinyl-source-stream": "^2.0.0",
+        "browser-sync": "^2.26.14",
+        "eslint": "^7.20.0",
+        "eslint-config-google": "^0.14.0"
+    },
+    "dependencies": {
+        "phaser": "^3.52.0"
+    }
 }
