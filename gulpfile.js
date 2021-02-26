@@ -26,8 +26,8 @@ const paths = {
         dest: './dist/js',
     },
     game: {
-        entry: './src/js/Game.js',
-        dest : 'game.js',
+        entry: './src/js/index.js',
+        dest : 'index.js',
     },
 };
 

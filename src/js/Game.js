@@ -2,24 +2,32 @@
 global Phaser
 */
 
-import DemoScene from 'scenes/DemoScene';
+import PreloadScene from 'scenes/PreloadScene';
+import MainScene from 'scenes/MainScene';
+import MenuScene from 'scenes/MenuScene';
 
-class Game extends Phaser.Game {
+export default class Game extends Phaser.Game {
 
     constructor() {
-        super({
-            type   : Phaser.AUTO,
-            width  : 800,
-            height : 800,
+        const config = {
+            type : Phaser.AUTO,
+            scale: {
+                mode      : Phaser.Scale.FIT,
+                parent    : 'phaser-game',
+                autoCenter: Phaser.Scale.CENTER_BOTH,
+                width     : 800,
+                height    : 600,
+            },
             physics: {
                 default: 'arcade',
                 arcade : {
-                    gravity: { y: 200 },
+                    gravity: { y: 300 },
+                    debug  : false,
                 },
             },
-            scene: [DemoScene],
-        });
+            scene: [PreloadScene, MenuScene, MainScene],
+        };
+        super(config);
     }
 }
 
-new Game();
